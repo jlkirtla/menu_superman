@@ -1,0 +1,3 @@
+name = "Menu Superman"
+description = "Provides email notification when Primary Links menu has broken."
+core = 6.x

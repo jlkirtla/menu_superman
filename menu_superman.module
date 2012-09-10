@@ -1,0 +1,17 @@
+<?php
+
+function menu_superman_cron() {
+  $link = db_query('SELECT `mlid` FROM `menu_links` WHERE `menu_name` = %s AND `p1` = `mlid`', 'primary_links');
+  while ($list = db_fetch_array($link)) {
+    $count[] = $list;
+  }
+  if (count($count) > 6) {
+    $message = array(
+      'id' => 'menu_link_break',
+      'to' => 'jtrein@ashland.edu',
+      'subject' => 'Primary Links has been broken.',
+      'body' => 'Someone has created a link and broken the Primary Links menu, and requires immediate attention.',
+      'headers' => 'From: donotreply@ashland.edu',);
+    drupal_mail_send($message);
+  }
+}
